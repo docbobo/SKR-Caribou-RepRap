@@ -6,13 +6,13 @@
 ; General preferences
 G90                                                       ; send absolute coordinates...
 M83                                                       ; ...but relative extruder moves
-M550 P"Caribou MK3s 220"                                  ; set printer name
+;M550 P"Caribou MK3s 220"                                  ; set printer name
 
 ; Network
-M552 S1                                                   ; enable network
-M586 P0 S1                                                ; enable HTTP
-M586 P1 S0                                                ; disable FTP
-M586 P2 S0                                                ; disable Telnet
+;M552 S1                                                   ; enable network
+;M586 P0 S1                                                ; enable HTTP
+;M586 P1 S0                                                ; disable FTP
+;M586 P2 S0                                                ; disable Telnet
 
 ; Drives
 M569 P0 S0 D3 V40                                         ; physical drive 0 goes forwards
@@ -45,7 +45,7 @@ M376 H10                                                  ; fade over 10mm
 M574 X1 S3                                                ; configure sensorless endstop for X
 M574 Y1 S3                                                ; configure sensorless endstop for Y
 M574 Z1 S2                                                ; configure Z-probe endstop for low end on Z
-M915 X Y R0 F0 S-10                                       ; configure motor stall detection
+M915 X Y H200 R0 F0 S40                                   ; configure motor stall detection
 
 ; Z-Probe (BLTouch)
 M558 P9 H7 A3 B0 F500 S0.03 T8000 X0 Y0 Z1 C"^probe"      ; disable Z probe but set dive height, probe speed and travel speed
