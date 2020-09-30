@@ -137,5 +137,10 @@ M563 P0 S"Nozzle" D0 H1 F0                                                     ;
 G10 P0 X0 Y0 Z0                                                                ; set tool 0 axis offsets
 G10 P0 R0 S0                                                                   ; set initial tool 0 active and standby temperatures to 0C
 
+; =====================================================================================================================
+; PanelDue
+; =====================================================================================================================
+M575 P1 S3 B57600                                                              ; enable support for PanelDue
+
 M501                                                                           ; load stored settings from config-override.g
 T0                                                                             ; select tool 0
