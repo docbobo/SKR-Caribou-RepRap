@@ -31,16 +31,19 @@ M404 N1.75 D0.4                                                                ;
 ; the switch between Stealth Chop and Spread Cycle occurs. The values are chosen to closely match those from
 ; @codiac2600's Marlin 2.x builds:
 ;
+;     V30  = 250.0 mm/sec
+;     V40  = 187.5 mm/sec
+;     V60  = 125.0 mm/sec
 ;     V68  = 110.3 mm/sec
-;     V600 = 3.1 mm/sec
+;     V600 =   3.1 mm/sec
 ;
 ; This can be checked via M569 P0 (or P1, P2, P3, P4) 
 ; =====================================================================================================================
-M569 P0 S0 D3 V68                                                              ; [X] physical drive 0 goes backwards
-M569 P1 S0 D3 V68                                                              ; [Y] physical drive 1 goes backwards
-M569 P2 S1 D3 V600                                                             ; [Z1] physical drive 2 goes forwards
+M569 P0 S0 D3 V40                                                              ; [X] physical drive 0 goes backwards
+M569 P1 S0 D3 V40                                                              ; [Y] physical drive 1 goes backwards
+M569 P2 S1 D3 V40                                                              ; [Z1] physical drive 2 goes forwards
 M569 P3 S0                                                                     ; [E] physical drive 3 goes backwards
-M569 P4 S1 D3 V600                                                             ; [Z2] physical drive 4 goes forwards
+M569 P4 S1 D3 V40                                                              ; [Z2] physical drive 4 goes forwards
 M584 X0 Y1 Z2:4 E3                                                             ; map the defined motors to the axis
 M906 X650 Y700 Z450 E550 I30                                                   ; set motor currents (mA) and motor idle factor in per cent
 M84 S30                                                                        ; set motor idle timeout to 30 seconds
