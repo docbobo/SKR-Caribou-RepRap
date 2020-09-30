@@ -38,12 +38,15 @@ M404 N1.75 D0.4                                                                ;
 ;     V600 =   3.1 mm/sec
 ;
 ; This can be checked via M569 P0 (or P1, P2, P3, P4) 
+;
+; Chopper Timing: The Marlin default chopper timing for 24V is defined as { 4, 2, 1 }. This is represented below as
+; T4 Y1:2 parameters.
 ; =====================================================================================================================
-M569 P0 S0 D3 V40 Y1:2                                                         ; [X] physical drive 0 goes backwards
-M569 P1 S0 D3 V40 Y1:2                                                         ; [Y] physical drive 1 goes backwards
-M569 P2 S1 D3 V40 Y1:2                                                         ; [Z1] physical drive 2 goes forwards
-M569 P3 S0 Y1:2                                                                ; [E] physical drive 3 goes backwards
-M569 P4 S1 D3 V40 Y1:2                                                         ; [Z2] physical drive 4 goes forwards
+M569 P0 S0 D3 V40 T4 Y1:2                                                      ; [X] physical drive 0 goes backwards
+M569 P1 S0 D3 V40 T4 Y1:2                                                      ; [Y] physical drive 1 goes backwards
+M569 P2 S1 D3 V40 T4 Y1:2                                                      ; [Z1] physical drive 2 goes forwards
+M569 P3 S0 T4 Y1:2                                                             ; [E] physical drive 3 goes backwards
+M569 P4 S1 D3 V40 T4 Y1:2                                                      ; [Z2] physical drive 4 goes forwards
 M584 X0 Y1 Z2:4 E3                                                             ; map the defined motors to the axis
 
 ; RepRap uses peak currents, not RMS like Marlin.
@@ -53,9 +56,10 @@ M84 S30                                                                        ;
 ; The 0.9° motor on the BMG extruder uses 32 microstepping
 M350 X16 Y16 Z16 E32 I1                                                        ; configure microstepping with interpolation
 M92 X100.00 Y100.00 Z400.00 E830.00                                            ; set steps per mm
-M566 X360.0 Y360.0 Z360.0 E360.0                                               ; set maximum instantaneous speed changes (mm/min)
-M203 X15000.00 Y15000.00 Z1800.00 E4800.00                                     ; set maximum speeds (mm/min) (E was 7200)
 M201 X2500.00 Y2500.00 Z100.00 E10000.00       		  	                       ; set accelerations (mm/s^2)
+M203 X15000.00 Y15000.00 Z1800.00 E4800.00                                     ; set maximum speeds (mm/min) (E was 7200)
+M204 P2000.0 T2000.0                                                           ; set print and travel accelerations (mm(s^2)
+M566 X360.0 Y360.0 Z360.0 E360.0                                               ; set maximum instantaneous speed changes (mm/min)
 
 ; =====================================================================================================================
 ; Axis Limits
