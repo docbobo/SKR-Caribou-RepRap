@@ -1,4 +1,4 @@
-M671 X-5:255 Y105:105 S1                                  ; leadscrews at left (connected to Z) and right (connected to E1) of X axis
+; M671 X-5:255 Y105:105 S1                                  ; leadscrews at left (connected to Z) and right (connected to E1) of X axis
 
 if !move.axes[0].homed || !move.axes[1].homed	; If the printer hasn't been homed, home it
 	G28 XY	; home y and x

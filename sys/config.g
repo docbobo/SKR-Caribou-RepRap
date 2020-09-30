@@ -24,8 +24,8 @@ M584 X0 Y1 Z2:4 E3                                        ; set drive mapping
 M350 X16 Y16 Z16 E32 I1                                   ; configure microstepping with interpolation
 M92 X100.00 Y100.00 Z400.00 E830.00                       ; set steps per mm
 M566 X900.00 Y900.00 Z12.00 E120.00                       ; set maximum instantaneous speed changes (mm/min)
-M203 X12000.00 Y10000.00 Z1200.00 E7200.00     			  ; set maximum speeds (mm/min)
-M201 X1250.00 Y1250.00 Z200.00 E10000.00       		  	  ; set accelerations (mm/s^2)
+M203 X15000.00 Y15000.00 Z1800.00 E4800.00     			  ; set maximum speeds (mm/min) (E was 7200)
+M201 X2500.00 Y2500.00 Z100.00 E10000.00       		  	  ; set accelerations (mm/s^2)
 M906 X650 Y700 Z450 E800 I30                              ; set motor currents (mA) and motor idle factor in per cent
 M84 S30                                                   ; Set idle timeout
 
@@ -62,11 +62,20 @@ M308 S1 P"e0temp" Y"thermistor" T500000 B4723 C1.19622e-7 ; configure sensor 0 a
 M950 H1 C"e0heat" T1                                      ; create nozzle heater output on e0heat and map it to sensor 1
 M307 H1 B0 S1.00                                          ; disable bang-bang mode for heater and set PWM limit
 
+; Filament  Sensor
+M591 D0 P1 C"e0stop" S1
+
 ; Fans
-M950 F0 C"fan0" Q100                                      ; create fan 0 on pin fan0 and set its frequency
-M106 P0 S0 H-1 C"Part Cooling"                            ; set fan 0 value. Thermostatic control is turned off
-M950 F1 C"e1heat" T1                                      ; create extruder fan output (2.4) on e1heat and map it to sensor 1 (T1)
+;M950 F0 C"fan0" Q100                                      ; create fan 0 on pin fan0 and set its frequency
+;M106 P0 S0 H-1 C"Part Cooling"                            ; set fan 0 value. Thermostatic control is turned off
+;M950 F1 C"e1heat" T1                                      ; create extruder fan output (2.4) on e1heat and map it to sensor 1 (T1)
+;M106 P1 H1 T45 S1 C"Hotend Cooling"                       ; set fan 1 value. Thermostatic control is turned on
+
+M950 F0 C"e1heat" Q15                                     ; create fan 0 on pin fan0 and set its frequency
+M106 P0 S0 H-1 B0.25 L0.25 C"Part Cooling"                ; set fan 0 value. Thermostatic control is turned off
+M950 F1 C"fan0" T1                                        ; create extruder fan output (2.4) on e1heat and map it to sensor 1 (T1)
 M106 P1 H1 T45 S1 C"Hotend Cooling"                       ; set fan 1 value. Thermostatic control is turned on
+
 
 ; Tools
 M563 P0 S"Nozzle" D0 H1 F0                                ; define tool 0
