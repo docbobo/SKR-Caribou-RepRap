@@ -39,13 +39,15 @@ M404 N1.75 D0.4                                                                ;
 ;
 ; This can be checked via M569 P0 (or P1, P2, P3, P4) 
 ; =====================================================================================================================
-M569 P0 S0 D3 V40                                                              ; [X] physical drive 0 goes backwards
-M569 P1 S0 D3 V40                                                              ; [Y] physical drive 1 goes backwards
-M569 P2 S1 D3 V40                                                              ; [Z1] physical drive 2 goes forwards
-M569 P3 S0                                                                     ; [E] physical drive 3 goes backwards
-M569 P4 S1 D3 V40                                                              ; [Z2] physical drive 4 goes forwards
+M569 P0 S0 D3 V40 Y1:2                                                         ; [X] physical drive 0 goes backwards
+M569 P1 S0 D3 V40 Y1:2                                                         ; [Y] physical drive 1 goes backwards
+M569 P2 S1 D3 V40 Y1:2                                                         ; [Z1] physical drive 2 goes forwards
+M569 P3 S0 Y1:2                                                                ; [E] physical drive 3 goes backwards
+M569 P4 S1 D3 V40 Y1:2                                                         ; [Z2] physical drive 4 goes forwards
 M584 X0 Y1 Z2:4 E3                                                             ; map the defined motors to the axis
-M906 X650 Y700 Z450 E550 I30                                                   ; set motor currents (mA) and motor idle factor in per cent
+
+; RepRap uses peak currents, not RMS like Marlin.
+M906 X920 Y990 Z640 E780 I30                                                   ; set motor currents (mA) and motor idle factor in per cent
 M84 S30                                                                        ; set motor idle timeout to 30 seconds
 
 ; The 0.9° motor on the BMG extruder uses 32 microstepping
@@ -88,7 +90,7 @@ M915 X Y H200 R0 F0 S40                                                        ;
 ; =====================================================================================================================
 ; Z-Probe (BLTouch)
 ; =====================================================================================================================
-M558 P9 H7 A3 B0 F500 S0.03 T8000 X0 Y0 Z1 C"^probe"                           ; disable Z probe but set dive height, probe speed and travel speed
+M558 P9 H7 A5 B0 F1000 S0.01 T12000 X0 Y0 Z1 C"^probe"                         ; disable Z probe but set dive height, probe speed and travel speed
 M950 S0 C"servo0"                              		   	                       ; setup servo 0 as servo port on SKR
 G31 X-24.3 Y-34.1 Z0                                                           ; probe offset
 
@@ -143,4 +145,4 @@ G10 P0 R0 S0                                                                   ;
 M575 P1 S3 B57600                                                              ; enable support for PanelDue
 
 M501                                                                           ; load stored settings from config-override.g
-T0                                                                             ; select tool 0
+T-1                                                                            ; deselect current tool

@@ -9,7 +9,7 @@ G1 X30 Y40 F6000                                                               ;
 G30                                                                            ; home Z by probing the bed
 
 G91                                                                            ; relative positioning
-G1 Z5 F100                                                                     ; lift Z relative to current position
+G1 Z5 F500                                                                     ; lift Z relative to current position
 
 M400                                                                           ; wait for current moves to finish
 G90                                                                            ; absolute positioning
