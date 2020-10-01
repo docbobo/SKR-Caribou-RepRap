@@ -38,15 +38,12 @@ M404 N1.75 D0.4                                                                ;
 ;     V600 =   3.1 mm/sec
 ;
 ; This can be checked via M569 P0 (or P1, P2, P3, P4) 
-;
-; Chopper Timing: The Marlin default chopper timing for 24V is defined as { 4, 2, 1 }. This is represented below as
-; T4 Y1:2 parameters.
 ; =====================================================================================================================
-M569 P0 S0 D3 V40 T4 Y1:2                                                      ; [X] physical drive 0 goes backwards
-M569 P1 S0 D3 V40 T4 Y1:2                                                      ; [Y] physical drive 1 goes backwards
-M569 P2 S1 D3 V40 T4 Y1:2                                                      ; [Z1] physical drive 2 goes forwards
-M569 P3 S0 T4 Y1:2                                                             ; [E] physical drive 3 goes backwards
-M569 P4 S1 D3 V40 T4 Y1:2                                                      ; [Z2] physical drive 4 goes forwards
+M569 P0 S0 D3 V40                                                              ; [X] physical drive 0 goes backwards
+M569 P1 S0 D3 V40                                                              ; [Y] physical drive 1 goes backwards
+M569 P2 S1 D3 V40                                                              ; [Z1] physical drive 2 goes forwards
+M569 P3 S0                                                                     ; [E] physical drive 3 goes backwards
+M569 P4 S1 D3 V40                                                              ; [Z2] physical drive 4 goes forwards
 M584 X0 Y1 Z2:4 E3                                                             ; map the defined motors to the axis
 
 ; RepRap uses peak currents, not RMS like Marlin.
