@@ -57,7 +57,7 @@ M84 S30                                                                        ;
 M350 X16 Y16 Z16 E32 I1                                                        ; configure microstepping with interpolation
 M92 X100.00 Y100.00 Z400.00 E830.00                                            ; set steps per mm
 M201 X2500.00 Y2500.00 Z100.00 E10000.00       		  	                       ; set accelerations (mm/s^2)
-M203 X15000.00 Y15000.00 Z1800.00 E4800.00                                     ; set maximum speeds (mm/min) (E was 7200)
+M203 X9000.00 Y9000.00 Z1800.00 E4800.00                                       ; set maximum speeds (mm/min) (E was 7200)
 M204 P2000.0 T2000.0                                                           ; set print and travel accelerations (mm(s^2)
 M566 X360.0 Y360.0 Z360.0 E360.0                                               ; set maximum instantaneous speed changes (mm/min)
 
