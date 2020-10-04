@@ -2,7 +2,6 @@
 ; Heater model parameters
 M307 H0 A114.3 C404.7 D8.0 S1.00 V0.0 B0
 M307 H1 A390.7 C138.1 D2.8 S1.00 V0.0 B0
-G31 X-24.3 Y-34.1 Z3.05	 				   	   			                       ; Probe Offset
 
 ; Workplace coordinates
 G10 L2 P1 X0.00 Y0.00 Z0.00

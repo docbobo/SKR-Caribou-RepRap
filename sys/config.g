@@ -93,7 +93,7 @@ M915 X Y H200 R0 F0 S40                                                        ;
 ; =====================================================================================================================
 M558 P9 H7 A5 B0 F1000 S0.01 T12000 X0 Y0 Z1 C"^probe"                         ; disable Z probe but set dive height, probe speed and travel speed
 M950 S0 C"servo0"                              		   	                       ; setup servo 0 as servo port on SKR
-G31 X-24.3 Y-34.1 Z0                                                           ; probe offset
+G31 X-24.3 Y-34.1 Z3.55	 				   	   			                       ; probe offset. IMPORTANT: Different from printer to printer
 
 ; =====================================================================================================================
 ; Heaters
@@ -144,6 +144,8 @@ G10 P0 R0 S0                                                                   ;
 ; PanelDue
 ; =====================================================================================================================
 M575 P1 S3 B57600                                                              ; enable support for PanelDue
+
+;M150 R128 U128 B128                                                            ; turn on light
 
 M501                                                                           ; load stored settings from config-override.g
 T-1                                                                            ; deselect current tool
